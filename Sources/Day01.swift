@@ -19,4 +19,8 @@ final class Day01: AdventOfCodeDay {
     func part2() async -> Int {
         0
     }
+    // Deliberate lint violations to test the SwiftLint Action. Do not merge.
+    func lintProbe(_ values: [Int]) -> Bool {
+        values.count == 0   
+    }
 }
