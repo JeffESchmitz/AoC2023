@@ -1,0 +1,9 @@
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+.swiftpm
+Package.resolved
+.aoc-session
+Sources/Inputs/*Input.swift
+.vscode/
