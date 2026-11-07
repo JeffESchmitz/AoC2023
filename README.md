@@ -2,6 +2,8 @@
 
 My [AoC 2023](https://adventofcode.com/2023) Solutions in Swift
 
+This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/AoCTemplate), with minor modifications to fit my working style.
+
 ### Overview
 
 All code for all days is compiled into a single macOS commandline binary, which can be run either from within Xcode or from Terminal.
