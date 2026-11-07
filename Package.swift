@@ -1,0 +1,26 @@
+// swift-tools-version:6.2
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: "AdventOfCode",
+    platforms: [
+        .macOS(.v26)
+    ],
+    dependencies: [
+        .package(url: "https://codeberg.org/gereon/AoCTools", .upToNextMinor(from: "0.1.11"))
+    ],
+    targets: [
+        .executableTarget(
+            name: "AdventOfCode",
+            dependencies: [ "AoCTools" ],
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "AoCTests",
+            dependencies: [ "AdventOfCode", "AoCTools" ],
+            path: "Tests"
+        )
+    ]
+)

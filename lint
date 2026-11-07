@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Lint the sources with SwiftLint, using .swiftlint.yml.
+# Pass --fix to autocorrect, or any other `swiftlint lint` options.
+#
+
+if ! command -v swiftlint >/dev/null 2>&1; then
+    echo "swiftlint not found. Install it with 'brew install swiftlint' on macOS," >&2
+    echo "or from https://github.com/realm/SwiftLint/releases on Linux." >&2
+    exit 1
+fi
+
+# On macOS SwiftLint needs Xcode's sourcekitd, which the Command Line Tools don't ship.
+if [ "$(uname)" = "Darwin" ] && [ -z "$DEVELOPER_DIR" ]; then
+    case "$(xcode-select -p 2>/dev/null)" in
+        *.app/*) ;;
+        *)
+            echo "SwiftLint needs Xcode, but the Command Line Tools are selected. Run:" >&2
+            echo "  sudo xcode-select -s /Applications/Xcode.app/Contents/Developer" >&2
+            echo "(adjust the path to your Xcode)" >&2
+            exit 1
+            ;;
+    esac
+fi
+
+swiftlint lint "$@"
