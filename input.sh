@@ -2,7 +2,7 @@
 
 YR=2023
 DAY=$1
-UA="https://github.com/JeffESchmitz/aoc2023"
+UA="https://github.com/JeffESchmitz/AoC2023"
 
 if [ -z "$DAY" ]; then
     if [ "$(date +%m)" != "12" ]; then
