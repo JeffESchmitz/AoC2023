@@ -48,6 +48,18 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 
 **Total: 0/50 stars** ⭐ 🎄
 
+## 📚 Problem-solving toolkit
+
+Bring lessons from earlier years into each new puzzle:
+
+- [Problem-solving guide](docs/problem-solving.md): eight questions, algorithm choices, and Swift pitfalls.
+- [Puzzle teacher](docs/puzzle-teacher.md): hints and guided discovery, with direct help when requested.
+- [Reusable prompts](docs/prompts.md): understanding, debugging, implementation, and reflection.
+- [AoCTools cheatsheet](docs/aoctools-cheatsheet.md): utilities checked against the resolved 2023 dependency.
+- [Daily checklist](docs/daily-checklist.md): this repository's commands and test behavior.
+
+Create day-specific notes under `docs/learnings/` as you solve problems. The guides link to the original 2025 material for longer examples. They do not require a multi-agent setup.
+
 ## 🧝 Daily workflow
 
 | Command | What it does |
