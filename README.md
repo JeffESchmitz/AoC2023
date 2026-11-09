@@ -15,7 +15,7 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 ## ⭐ 2023 Progress
 
 ```
-███░░░░░░░░░░░░░░░░░░░░░░  Stars (6/50)
+████░░░░░░░░░░░░░░░░░░░░░  Stars (8/50)
 ```
 
 | Day | Title | Stars | Key Technique |
@@ -23,7 +23,7 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 | [1](Sources/Day01.swift) | [Trebuchet?!](https://adventofcode.com/2023/day/1) | ⭐⭐ | Scan digits and overlapping spelled numbers |
 | [2](Sources/Day02.swift) | [Cube Conundrum](https://adventofcode.com/2023/day/2) | ⭐⭐ | Parse draws and track per-color maxima |
 | [3](Sources/Day03.swift) | [Gear Ratios](https://adventofcode.com/2023/day/3) | ⭐⭐ | Grid adjacency and gear-to-number mapping |
-| [4](Sources/Day04.swift) | [Scratchcards](https://adventofcode.com/2023/day/4) | | |
+| [4](Sources/Day04.swift) | [Scratchcards](https://adventofcode.com/2023/day/4) | ⭐⭐ | [Set intersections and forward copy counts](docs/learnings/day04.md) |
 | [5](Sources/Day05.swift) | [If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5) | | |
 | [6](Sources/Day06.swift) | [Wait For It](https://adventofcode.com/2023/day/6) | | |
 | [7](Sources/Day07.swift) | [Camel Cards](https://adventofcode.com/2023/day/7) | | |
@@ -46,7 +46,7 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 | [24](Sources/Day24.swift) | [Never Tell Me The Odds](https://adventofcode.com/2023/day/24) | | |
 | [25](Sources/Day25.swift) | [Snowverload](https://adventofcode.com/2023/day/25) | | |
 
-**Total: 6/50 stars** ⭐ 🎄
+**Total: 8/50 stars** ⭐ 🎄
 
 ## 📚 Problem-solving toolkit
 
@@ -58,7 +58,7 @@ Bring lessons from earlier years into each new puzzle:
 - [AoCTools cheatsheet](docs/aoctools-cheatsheet.md): utilities checked against the resolved 2023 dependency.
 - [Daily checklist](docs/daily-checklist.md): this repository's commands and test behavior.
 
-Create day-specific notes under `docs/learnings/` as you solve problems. The guides link to the original 2025 material for longer examples. They do not require a multi-agent setup.
+The [2023 learning log](docs/learnings/README.md) collects reusable patterns, Swift techniques, and testing lessons from this year's puzzles.
 
 ## 🧝 Daily workflow
 
