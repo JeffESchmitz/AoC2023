@@ -1,5 +1,9 @@
 # Claude Code instructions
 
+## Everyday workflow
+
+Ordinary puzzle work can be done on `main`: solve, test the relevant day, and review the diff. Use small, descriptive commits. Use a branch and PR for larger changes, dependency upgrades, restructuring, or experiments that may be discarded. GitHub Actions provides feedback after pushes; PRs and passing checks are not required for ordinary work.
+
 ## Git policy
 
 - Do not commit or push unless the user explicitly requests it.
