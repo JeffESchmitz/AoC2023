@@ -23,6 +23,32 @@ The project-local `.swift-version` contains `xcode`, so Swiftly and VS Code's Sw
 
 This turns on the git hooks that block any commit or push containing puzzle input or `.aoc-session`. Git never enables hooks from a clone automatically, so run it again on every new machine or clone. See [the hooks README](.githooks/README.md).
 
+## If Codeberg is blocked on your network
+
+AoCTools is hosted on Codeberg. On a machine that can reach GitHub but not Codeberg, SwiftPM can fetch it from a private GitHub mirror instead. `Package.swift` stays unchanged. Set this up once per Mac; it applies to every package on that Mac, including future AoC years:
+
+1. Let Git sign in to GitHub over HTTPS so it can read the private mirror: `gh auth login`, then `gh auth setup-git`.
+2. Check for an existing global mirror file with `cat ~/.swiftpm/configuration/mirrors.json`. If it exists, add the entry below to its `object` list instead of replacing it. Otherwise create it:
+
+   ```sh
+   mkdir -p ~/.swiftpm/configuration
+   cat > ~/.swiftpm/configuration/mirrors.json <<'EOF'
+   {
+     "object" : [
+       {
+         "mirror" : "https://github.com/JeffESchmitz/AoCTools.git",
+         "original" : "https://codeberg.org/gereon/AoCTools"
+       }
+     ],
+     "version" : 1
+   }
+   EOF
+   ```
+
+3. In the repository, run `swift package resolve`. The output should show it fetching `https://github.com/JeffESchmitz/AoCTools.git`.
+
+`swift package config set-mirror` only writes a mirror for the current clone (`.swiftpm/configuration/mirrors.json`), so it isn't used here. To build from Xcode, also add the GitHub account under Xcode Settings → Accounts. The mirror refreshes from Codeberg daily; see its README for details.
+
 ## Try one completed example
 
 Day 4 has populated public examples:
