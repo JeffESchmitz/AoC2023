@@ -2,9 +2,12 @@
 
 Use this from the repository root. Pick the day you want; completing earlier days is not required.
 
+For first use, start with [quick start](../QUICKSTART.md). The [documentation map](README.md) shows which coaching reference to open for a particular task.
+
 ## Once per environment
 
 - [ ] Check `swift --version` and the selected Xcode/macOS SDK. The root package requires macOS 26; the inspected AoCTools 0.1.11 dependency requires Swift 6.4. Confirm the actual resolved manifest rather than copying the 2025 toolchain pin.
+- [ ] If using Swiftly or VS Code's Swift tasks, check `swiftly run swift --version` from the repository root. The local `.swift-version` selects `xcode`; that toolchain must satisfy the dependency's Swift 6.4 requirement.
 - [ ] Run `swift build`; check SwiftLint availability with `./lint`. See the root [setup instructions](../README.md#-setup).
 - [ ] Keep `.aoc-session` and `Sources/Inputs/*Input.swift` private. Do not paste the cookie or full personal input into documentation.
 
@@ -27,6 +30,7 @@ Use this from the repository root. Pick the day you want; completing earlier day
 ## Reflect and review
 
 - [ ] Create `docs/learnings/dayNN.md` when there is something to record. No empty day placeholders are required.
+- [ ] Use the [note template](learnings/TEMPLATE.md) if useful, and record how much help you needed. Choose a small [practice variation](practice.md) for later recall when the lesson needs reinforcement.
 - [ ] Record: **part/status**, **problem cues**, **representation/invariant**, **approach and complexity**, **failed idea or bug**, **checks actually run**, and **what to recognize next time**. Keep private inputs out. Distinguish verified completion from a hypothesis.
 - [ ] Update README progress only for confirmed completion. Review the diff for unrelated changes or private data.
 - [ ] Commit/push only when explicitly requested, following [AGENTS.md](../AGENTS.md).

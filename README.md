@@ -50,15 +50,17 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 
 ## 📚 Problem-solving toolkit
 
-Bring lessons from earlier years into each new puzzle:
+Start with the [quick start](QUICKSTART.md) for commands or the [learning and coaching guide](docs/README.md) to choose a reference. Bring lessons from earlier years into each new puzzle:
 
 - [Problem-solving guide](docs/problem-solving.md): eight questions, algorithm choices, and Swift pitfalls.
 - [Puzzle teacher](docs/puzzle-teacher.md): hints and guided discovery, with direct help when requested.
 - [Reusable prompts](docs/prompts.md): understanding, debugging, implementation, and reflection.
 - [AoCTools cheatsheet](docs/aoctools-cheatsheet.md): utilities checked against the resolved 2023 dependency.
 - [Daily checklist](docs/daily-checklist.md): this repository's commands and test behavior.
+- [Practice sessions](docs/practice.md): short exercises and variations to build independent recall.
+- [Debugging guide](docs/debugging.md): small counterexamples, traces, and fair performance comparisons.
 
-The [2023 learning log](docs/learnings/README.md) collects reusable patterns, Swift techniques, and testing lessons from this year's puzzles.
+The [2023 learning log](docs/learnings/README.md) collects reusable patterns, Swift techniques, and testing lessons from this year's puzzles. The [adoption notes](docs/adoption-notes.md) record the review of all 45 project Markdown files in AoC2024 and AoC2025 and how their useful material fits here.
 
 ## 🧝 Daily workflow
 
