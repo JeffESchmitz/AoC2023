@@ -1,0 +1,81 @@
+#!/bin/sh
+#
+# Shared AoC input scanner for the pre-commit and pre-push hooks.
+#
+# Reads lines of "<where><TAB><path><TAB><added text>" on stdin, where <where> is a
+# label like "staged" or a commit hash. Exits 1 and reports to stderr if any line:
+#   - belongs to an input file (Sources/Inputs/*Input.swift) or .aoc-session, or
+#   - contains 16 consecutive characters from a local input line, or a whole
+#     input line of 8-15 characters. Pieces made of fewer than 5 distinct
+#     characters (like "......#.........") are ignored.
+#
+# Allowlist: matches inside a line listed in .git/info/aoc-allowlist are ignored.
+# It is local on purpose: a committed allowlist could let input slip past the check.
+# Only add whole public example lines there, after a human has checked them.
+
+export LC_ALL=C
+INPUT_DIR="Sources/Inputs"
+ALLOWLIST=$(git rev-parse --git-path info/aoc-allowlist)
+
+set -- "$INPUT_DIR"/*Input.swift
+[ -e "$1" ] || set --  # no local inputs: only the path check applies
+
+awk -F'\t' -v N=16 -v MINLEN=8 -v MINDISTINCT=5 -v ALLOW="$ALLOWLIST" '
+function distinct(s,    i, seen, n, c) {
+    n = 0
+    for (i = 1; i <= length(s); i++) {
+        c = substr(s, i, 1)
+        if (!(c in seen)) { seen[c] = 1; n++ }
+    }
+    return n
+}
+function addpat(p, src) {
+    if (distinct(p) < MINDISTINCT) return
+    if (!(p in pat)) { pat[p] = src; lens[length(p)] = 1 }
+}
+BEGIN {
+    for (a = 1; a < ARGC; a++) {
+        f = ARGV[a]; inside = 0
+        while ((getline line < f) > 0) {
+            if (!inside) { if (line ~ /#"""$/) inside = 1; continue }
+            if (line ~ /^"""#/) { inside = 0; continue }
+            L = length(line)
+            if (L < MINLEN) continue
+            if (L < N) { addpat(line, f); continue }
+            for (i = 1; i + N - 1 <= L; i++) addpat(substr(line, i, N), f)
+        }
+        close(f)
+    }
+    while ((getline line < ALLOW) > 0) {
+        if (line == "" || line ~ /^#/) continue
+        for (len in lens)
+            for (i = 1; i + len - 1 <= length(line); i++)
+                delete pat[substr(line, i, len)]
+    }
+    close(ALLOW)
+    ARGC = 1  # now read the added lines from stdin
+}
+{
+    where = $1; file = $2
+    if (file ~ /^Sources\/Inputs\/.*Input\.swift$/ || file == ".aoc-session") {
+        if (!((where, file) in badpath)) {
+            badpath[where, file] = 1
+            printf "  %s %s: AoC input or session file\n", where, file
+            hits++
+        }
+        next
+    }
+    text = substr($0, length($1) + length($2) + 3); T = length(text)
+    for (len in lens) {
+        for (i = 1; i + len - 1 <= T; i++) {
+            w = substr(text, i, len)
+            if (w in pat) {
+                printf "  %s %s: \"%s\" (matches %s)\n", where, file, w, pat[w]
+                hits++
+                i = T  # one report per line and length is enough
+            }
+        }
+    }
+}
+END { exit hits ? 1 : 0 }
+' "$@" >&2

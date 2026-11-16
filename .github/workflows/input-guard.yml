@@ -1,0 +1,43 @@
+name: Input guard
+
+# Backstop for the local hooks in .githooks: fails if AoC puzzle input or the
+# session cookie file is tracked now or anywhere in the history. CI has no copy
+# of the input, so it cannot spot copied fragments; the local hooks do that.
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  no-puzzle-input:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Input and session files are gitignored
+        run: |
+          status=0
+          for f in .aoc-session Sources/Inputs/Day01+Input.swift; do
+            if ! git check-ignore -q --no-index "$f"; then
+              echo "::error file=.gitignore::$f is not gitignored"
+              status=1
+            fi
+          done
+          exit $status
+
+      - name: No input or session files in any commit
+        run: |
+          found=$(git log --all --format= --name-only -- Sources/Inputs .aoc-session \
+            | grep -v -e '^$' -e '^Sources/Inputs/\.gitkeep$' | sort -u || true)
+          if [ -n "$found" ]; then
+            echo "$found" | while read -r f; do
+              echo "::error::$f appears in the repository history. Remove it and rewrite the affected commits."
+            done
+            exit 1
+          fi
+          echo "No puzzle input or session files found in $(git rev-list --all --count) commits."
