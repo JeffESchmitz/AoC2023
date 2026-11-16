@@ -78,7 +78,7 @@ It also compiled and ran when called on a `Substring`. An upstream PR should add
 
 Two known differences need to be decided or documented:
 
-- **Overflow:** a digit run larger than `Int.max` makes the current version drop the number, because `Int(...)` returns `nil`. The scanner as written would trap. To keep the current behavior, use `multipliedReportingOverflow` and `addingReportingOverflow` and skip the number on overflow.
+- **Overflow:** for a digit run too large for `Int`, the current regex backtracks and splits it into smaller numbers: `"99999999999999999999 4"` gives `[999999999999999999, 99, 4]`. The scanner as written above would trap. Our local `fastIntegers()` skips the oversized run instead, using `multipliedReportingOverflow` and `addingReportingOverflow`, and accumulates toward the sign so `Int.min` still parses. An upstream PR should propose skipping and point out the current splitting behavior.
 - **Non-ASCII digits:** the regex’s `.digit` matches Unicode digits such as `٣`, but the scanner only reads ASCII `0`–`9`. AoC input is ASCII, so this should not matter in practice, but the doc comment should say so.
 
 **Estimated size:** about 25 lines of source and 8–10 lines of tests. No API is added or removed.
@@ -93,8 +93,14 @@ Two known differences need to be decided or documented:
 
 Work through these in order. Stop at the first option that is enough.
 
-1. **Local extension in this repository, now.** Add the scanner under a different name, such as `fastIntegers()` in `Sources/StringProtocol+FastIntegers.swift`. Reusing the name `integers()` would make `String` calls resolve to the AoCTools version and `Substring` calls to ours, which is confusing. This needs no dependency change and is the cheapest step. It only helps this repository.
+1. **Local extension in this repository.** ✅ Done: `fastIntegers()` in [`Sources/StringProtocol+FastIntegers.swift`](../Sources/StringProtocol+FastIntegers.swift), with tests in [`Tests/FastIntegersTests.swift`](../Tests/FastIntegersTests.swift) that check it against `integers()`. We avoided the name `integers()` because `String` calls would resolve to the AoCTools version and `Substring` calls to ours, which is confusing. No dependency change was needed. Day 4 doesn’t use it; it still uses plain `split` + `Int`. Use `fastIntegers()` on later days that mix numbers with other text.
 2. **Offer it upstream.** AoCTools is MIT-licensed, and this change is a backward-compatible performance fix with parity tests. That is the easiest kind of change to accept. Open a Codeberg issue first with the benchmark table and the parity cases, and ask whether Gereon wants a PR. He may prefer a different trade-off, such as keeping the regex for readability.
+
+   > **To do, step 2 (paused 2026-11-16).** Next session:
+   > - Draft the Codeberg issue text: the problem, the benchmark table, the parity cases, and the overflow-splitting quirk.
+   > - Decide whether to offer `fastIntegers()`’s overflow handling or the shorter version above.
+   > - Run the scanner against AoCTools’ own `swift test` in a scratch clone, not in this repository.
+   > - Ask before posting anything to Codeberg. Posting is public.
 3. **Fork, if upstream declines and more than one repository needs it.** Fork on Codeberg, keep `upstream` as a remote, and periodically rebase your few commits onto new tags. Point `Package.swift` at the fork, for example `.package(url: "<your fork>", branch: "fast-integers")` or your own tag. For quick local trials, `swift package edit AoCTools --path ../AoCTools` overrides the dependency without changing `Package.swift`.
 4. **Your own package, only if you end up maintaining many changes.** A separately named library means owning everything it contains, including grids, A*, and points, and losing upstream fixes unless you port them. Use a different module name so it can sit next to AoCTools if needed. MIT requires keeping Gereon’s copyright and license notice on any copied code.
 
