@@ -25,29 +25,26 @@ This turns on the git hooks that block any commit or push containing puzzle inpu
 
 ## If Codeberg is blocked on your network
 
-AoCTools is hosted on Codeberg. On a machine that can reach GitHub but not Codeberg, SwiftPM can fetch it from a private GitHub mirror instead. `Package.swift` stays unchanged. Set this up once per Mac; it applies to every package on that Mac, including future AoC years:
+`Package.swift` fetches AoCTools from [Codeberg](https://codeberg.org/gereon/AoCTools). On a machine that can reach GitHub but not Codeberg, keep `Package.swift` as it is and point SwiftPM at your own GitHub copy instead:
 
-1. Let Git sign in to GitHub over HTTPS so it can read the private mirror: `gh auth login`, then `gh auth setup-git`.
-2. Check for an existing global mirror file with `cat ~/.swiftpm/configuration/mirrors.json`. If it exists, add the entry below to its `object` list instead of replacing it. Otherwise create it:
+1. Mirror the Codeberg repository to your GitHub account, ideally private. Name the copy **`AoCTools`**: SwiftPM takes the package's identity from the mirror URL, and any other name breaks the build with "product 'AoCTools' … not found".
+2. On the blocked machine, add a global SwiftPM mirror in `~/.swiftpm/configuration/mirrors.json`. It applies to every package on that machine:
 
-   ```sh
-   mkdir -p ~/.swiftpm/configuration
-   cat > ~/.swiftpm/configuration/mirrors.json <<'EOF'
+   ```json
    {
      "object" : [
        {
-         "mirror" : "https://github.com/JeffESchmitz/AoCTools.git",
+         "mirror" : "https://github.com/<you>/AoCTools.git",
          "original" : "https://codeberg.org/gereon/AoCTools"
        }
      ],
      "version" : 1
    }
-   EOF
    ```
 
-3. In the repository, run `swift package resolve`. The output should show it fetching `https://github.com/JeffESchmitz/AoCTools.git`.
+3. Run `swift package resolve` and check that it fetches from your GitHub copy.
 
-`swift package config set-mirror` only writes a mirror for the current clone (`.swiftpm/configuration/mirrors.json`), so it isn't used here. To build from Xcode, also add the GitHub account under Xcode Settings → Accounts. The mirror refreshes from Codeberg daily; see its README for details.
+`swift package config set-mirror` only writes a mirror for the current clone. For a private copy, Git needs GitHub credentials (`gh auth setup-git`), and Xcode needs the account under Settings → Accounts.
 
 ## Try one completed example
 
