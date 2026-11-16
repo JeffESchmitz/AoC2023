@@ -38,6 +38,20 @@ Do not infer a technique from a single word such as “minimum.” Explain why t
 - Before Part 2, restate the changed constraints. Preserve a correct Part 1 approach as a reference; measure before optimizing.
 - Compare an optimized implementation with the small oracle on representative tiny cases. Watch for work repeated inside nested loops.
 
+## Decide what a state means
+
+Before choosing a collection, state whether the answer concerns existence, unique items, total occurrences, paths, or a minimum cost. A set merges equal items; a dictionary of counts preserves their multiplicity. Neither is interchangeable merely because both support fast lookup.
+
+Two states may share a cache entry only when they have the same future behavior for the result being computed. Include remaining resources, direction, depth, or other relevant parameters when the rules depend on them. Establish termination or handle cycles explicitly.
+
+Keep original parsed data available when both parts need a fresh simulation. Decide from the rules whether a round reads one snapshot and applies changes together, or whether each change immediately affects the next operation.
+
+## Reuse a model without forcing the next part
+
+When the requested Part 2 is available, separate what stayed the same from what changed: input interpretation, transition rules, accounting, constraints, or output. A helper with meaningful parameters may serve both parts, but some changes require a different algorithm. Do not predict an unseen part's solution.
+
+Precompute a reusable fact when its repeated cost justifies storage. Measure setup as well as the parts when assessing total runtime. See [debugging and performance](debugging.md) for a fair comparison.
+
 ## Swift checks
 
 Integer division truncates toward zero: `-3 / 2 == -1`. It is not floor division. Check overflow before multiplying large counts. `split` omits empty subsequences by default. String integer indexing is not generally constant time; use an appropriate representation when repeatedly scanning. Preserve significant blank lines during parsing.
@@ -46,8 +60,10 @@ Integer division truncates toward zero: `-3 / 2 == -1`. It is not floor division
 
 Can you explain why it works, its time/space costs, the failure that taught you most, and the signal that would help you recognize the pattern again? Capture those in a short day note using the [daily checklist](daily-checklist.md).
 
-For guided help see [puzzle teacher](puzzle-teacher.md); for reusable requests see [prompts](prompts.md).
+For guided help see [puzzle teacher](puzzle-teacher.md); for reusable requests see [prompts](prompts.md). Retry a toy variation using [practice sessions](practice.md) to check whether the idea transferred.
 
 ## Provenance
 
 Adapted from [TwelveDaysOfCode-2025-Learnings.md](https://github.com/JeffESchmitz/AoC2025/blob/e277e770319fcdd342f178e44cc37f06ae644c58/TwelveDaysOfCode-2025-Learnings.md), [AOC-AGENT-QUICK-START.md](https://github.com/JeffESchmitz/AoC2025/blob/e277e770319fcdd342f178e44cc37f06ae644c58/AOC-AGENT-QUICK-START.md) at AoC2025 commit `e277e770319fcdd342f178e44cc37f06ae644c58`. These are curated 2023 adaptations, not synchronized copies. The original documents retain the longer worked examples and historical context.
+
+Expanded with representation, counting, and reuse lessons from both years' day notes; see [adoption notes](adoption-notes.md).

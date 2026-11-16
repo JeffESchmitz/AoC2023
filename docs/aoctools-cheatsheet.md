@@ -8,7 +8,7 @@ Checked against the locally resolved AoCTools **0.1.11**, revision `1e7804d0a72e
 
 The root manifest requests `.upToNextMinor(from: "0.1.11")` from Codeberg. Package.resolved is currently ignored, so another checkout may resolve differently. Recheck APIs in the resolved source after dependency changes. Do not silently upgrade dependencies to match an example.
 
-The inspected dependency manifest requires Swift **6.4** and macOS **26** even though the root manifest's tools version is 6.2. Use a toolchain compatible with the actual resolved dependency. No `.swift-version` pin is introduced by these docs.
+The inspected dependency manifest requires Swift **6.4** and macOS **26** even though the root manifest's tools version is 6.2. The repository's `.swift-version` contains `xcode`, selecting the active Xcode toolchain for Swiftly (currently Swift 6.4.2 on this machine). It follows `xcode-select` rather than pinning an exact Swift release; recheck compatibility when changing Xcode.
 
 ## Verified utilities
 

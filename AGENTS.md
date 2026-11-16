@@ -20,10 +20,13 @@ Default to hints and guided understanding; provide direct explanations or implem
 
 Read references selectively, not all at session startup:
 
+- [Quick start](QUICKSTART.md) and [documentation map](docs/README.md): local setup and which guide to use.
 - [Problem-solving framework](docs/problem-solving.md): understand a puzzle, choose a representation, compare algorithms.
 - [Puzzle teacher](docs/puzzle-teacher.md): guide learning or debug reasoning.
 - [Prompt examples](docs/prompts.md): reusable ways to ask for help.
 - [AoCTools reference](docs/aoctools-cheatsheet.md): discover utilities; verify against the resolved dependency.
 - [Daily checklist](docs/daily-checklist.md): local commands, honest test results, and day-note format.
+- [Practice sessions](docs/practice.md): toy exercises and recall on completed concepts.
+- [Debugging guide](docs/debugging.md): counterexamples, state traces, and controlled performance comparisons.
 
 Capture actual learning in `docs/learnings/dayNN.md` as needed. Reference material does not authorize commits, pushes, dependency changes, or extra agents; the Git policy above remains in effect.
