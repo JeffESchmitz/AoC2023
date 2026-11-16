@@ -24,9 +24,8 @@ final class Day04: AdventOfCodeDay {
         )
         precondition(numberLists.count == 2, "Expected a pipe between the number lists.")
 
-        let winningNumbers = Set(String(numberLists[0]).integers())
-        let yourNumbers = Set(String(numberLists[1]).integers())
-        return winningNumbers.intersection(yourNumbers).count
+        let winningNumbers = Set(numberLists[0].split(separator: " ").compactMap { Int($0) })
+        return numberLists[1].split(separator: " ").count { Int($0).map(winningNumbers.contains) ?? false }
     }
 
     func part1() async -> Int {
