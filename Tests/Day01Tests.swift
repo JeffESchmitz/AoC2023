@@ -24,12 +24,12 @@ struct Day01Tests {
     @Test("Day 1 Part 1 Solution", .enabled(if: !Day01.input.isEmpty, "no puzzle input yet"))
     func testDay01_part1_solution() async {
         let day = Day01(input: Day01.input)
-        await expectAnswer(day.part1(), nil)
+        await expectAnswer(day.part1(), 54_605)
     }
 
     @Test("Day 1 Part 2 Solution", .enabled(if: !Day01.input.isEmpty, "no puzzle input yet"))
     func testDay01_part2_solution() async {
         let day = Day01(input: Day01.input)
-        await expectAnswer(day.part2(), nil)
+        await expectAnswer(day.part2(), 55_429)
     }
 }
