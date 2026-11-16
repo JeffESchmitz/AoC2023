@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# Block commits that contain Advent of Code puzzle input or the session cookie.
+# Matching rules are in .githooks/aoc-input-scan; reviewed exceptions in .git/info/aoc-allowlist.
+#
+# Turned on per clone by ./setup (git config core.hooksPath .githooks).
+# Bypass (don't): git commit --no-verify
+
+export LC_ALL=C
+SCAN="$(dirname "$0")/aoc-input-scan"
+
+NAMES=$(mktemp) && PATCH=$(mktemp) || { echo "pre-commit: mktemp failed. Commit blocked." >&2; exit 1; }
+trap 'rm -f "$NAMES" "$PATCH"' EXIT
+
+# Staged paths (catches input files even when only renamed or force-added),
+# then every added line. If git can't produce them, block (fail closed).
+if ! git diff --cached --no-renames --name-only --diff-filter=ACMR >"$NAMES" ||
+   ! git diff --cached -U0 --no-color --no-ext-diff >"$PATCH"; then
+    echo "pre-commit: could not read staged changes. Commit blocked to be safe." >&2
+    exit 1
+fi
+{
+    awk '{ print "staged\t" $0 "\t" }' "$NAMES"
+    awk '/^\+\+\+ / { file = substr($0, 7); next }
+         /^\+/      { print "staged\t" file "\t" substr($0, 2) }' "$PATCH"
+} | "$SCAN" && exit 0
+
+echo "pre-commit: staged changes contain AoC puzzle input (above). Commit blocked." >&2
+echo "Unstage input files (git restore --staged <file>) and replace copied input with made-up data." >&2
+exit 1
