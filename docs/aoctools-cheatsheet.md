@@ -6,9 +6,9 @@ Use this to discover utilities, not to force every puzzle into a library abstrac
 
 Checked against the locally resolved AoCTools **0.1.11**, revision `1e7804d0a72ec5a74ab86f89826843010a2a9dbe`, on November 8, 2026. [Browse that source](https://codeberg.org/gereon/AoCTools/src/commit/1e7804d0a72ec5a74ab86f89826843010a2a9dbe/Sources).
 
-The root manifest requests `.upToNextMinor(from: "0.1.11")` from Codeberg. Package.resolved is currently ignored, so another checkout may resolve differently. Recheck APIs in the resolved source after dependency changes. Do not silently upgrade dependencies to match an example.
+The root manifest requests `.upToNextMinor(from: "0.1.10")` from Codeberg. Package.resolved is currently ignored, so another checkout may resolve differently. Recheck APIs in the resolved source after dependency changes. Do not silently upgrade dependencies to match an example.
 
-The inspected dependency manifest requires Swift **6.4** and macOS **26** even though the root manifest's tools version is 6.2. The repository's `.swift-version` contains `xcode`, selecting the active Xcode toolchain for Swiftly (currently Swift 6.4.2 on this machine). It follows `xcode-select` rather than pinning an exact Swift release; recheck compatibility when changing Xcode.
+AoCTools 0.1.11 requires Swift **6.4** and macOS **26**, even though the root manifest's tools version is 6.2. With an older Swift (6.2 or 6.3), SwiftPM resolves **0.1.10** instead. 0.1.10's `Sources` are identical to 0.1.11's; the 0.1.11 release only changed its manifest and lint settings. That's why the range starts at 0.1.10: machines on an older Xcode can still build. The repository's `.swift-version` contains `xcode`, selecting the active Xcode toolchain for Swiftly (currently Swift 6.4.2 on this machine). It follows `xcode-select` rather than pinning an exact Swift release; recheck compatibility when changing Xcode.
 
 ## Verified utilities
 

@@ -9,7 +9,7 @@ let package = Package(
         .macOS(.v26)
     ],
     dependencies: [
-        .package(url: "https://codeberg.org/gereon/AoCTools", .upToNextMinor(from: "0.1.11"))
+        .package(url: "https://codeberg.org/gereon/AoCTools", .upToNextMinor(from: "0.1.10"))
     ],
     targets: [
         .executableTarget(

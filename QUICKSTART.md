@@ -11,7 +11,7 @@ swiftly run swift --version
 xcode-select -p
 ```
 
-The root package declares Swift tools 6.2 and macOS 26. The currently resolved AoCTools 0.1.11 package requires Swift 6.4, so use a toolchain that satisfies that dependency too. See [setup](README.md#-setup) and the [dependency reference](docs/aoctools-cheatsheet.md#version-and-dependency-boundary). Another year's toolchain pin or package lockfile is not a setup step here.
+The root package declares Swift tools 6.2 and macOS 26. AoCTools 0.1.11 requires Swift 6.4. With Swift 6.2 or 6.3, SwiftPM resolves 0.1.10 instead, which has the same source code. See [setup](README.md#-setup) and the [dependency reference](docs/aoctools-cheatsheet.md#version-and-dependency-boundary). Another year's toolchain pin or package lockfile is not a setup step here.
 
 The project-local `.swift-version` contains `xcode`, so Swiftly and VS Code's Swiftly tasks use the toolchain selected by `xcode-select`. On this machine that is Swift 6.4.2. This selector follows the selected Xcode rather than pinning an exact release. If resolution reports Swift 6.3.3, check `swiftly run swift --version` from this directory and reload VS Code after selecting the correct toolchain. It does not require changing Swiftly's global default.
 

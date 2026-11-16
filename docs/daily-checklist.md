@@ -6,8 +6,8 @@ For first use, start with [quick start](../QUICKSTART.md). The [documentation ma
 
 ## Once per environment
 
-- [ ] Check `swift --version` and the selected Xcode/macOS SDK. The root package requires macOS 26; the inspected AoCTools 0.1.11 dependency requires Swift 6.4. Confirm the actual resolved manifest rather than copying the 2025 toolchain pin.
-- [ ] If using Swiftly or VS Code's Swift tasks, check `swiftly run swift --version` from the repository root. The local `.swift-version` selects `xcode`; that toolchain must satisfy the dependency's Swift 6.4 requirement.
+- [ ] Check `swift --version` and the selected Xcode/macOS SDK. The root package requires macOS 26. AoCTools 0.1.11 requires Swift 6.4; with Swift 6.2 or 6.3, SwiftPM resolves 0.1.10, which has the same source code. Confirm the actual resolved manifest rather than copying the 2025 toolchain pin.
+- [ ] If using Swiftly or VS Code's Swift tasks, check `swiftly run swift --version` from the repository root. The local `.swift-version` selects `xcode`; that toolchain must be Swift 6.2 or newer.
 - [ ] Run `swift build`; check SwiftLint availability with `./lint`. See the root [setup instructions](../README.md#-setup).
 - [ ] Keep `.aoc-session` and `Sources/Inputs/*Input.swift` private. Do not paste the cookie or full personal input into documentation.
 
