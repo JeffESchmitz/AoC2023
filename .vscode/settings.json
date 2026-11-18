@@ -1,0 +1,4 @@
+{
+  // Overrides the user-level setting that turns off SwiftPM support (kept on for flagship).
+  "swift.disableSwiftPackageManagerIntegration": false
+}
