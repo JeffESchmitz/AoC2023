@@ -31,6 +31,7 @@ Default to hints and guided understanding; provide direct explanations or implem
 
 Read references selectively, not all at session startup:
 
+- [Coach mode](docs/coach.md): the default understand, identify, pseudocode, code, and reflect loop.
 - [Quick start](QUICKSTART.md) and [documentation map](docs/README.md): local setup and which guide to use.
 - [Problem-solving framework](docs/problem-solving.md): understand a puzzle, choose a representation, compare algorithms.
 - [Puzzle teacher](docs/puzzle-teacher.md): guide learning or debug reasoning.

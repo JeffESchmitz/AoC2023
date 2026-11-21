@@ -5,7 +5,8 @@ Start with the page that matches what you need. These guides support one assista
 | I want to… | Read | Use it for |
 | --- | --- | --- |
 | Get set up and run one example | [Quick start](../QUICKSTART.md) | Local commands, paths, and test behavior |
-| Follow a whole puzzle session | [Daily checklist](daily-checklist.md) | Understand, implement, verify, reflect |
+| Work through a puzzle session | [Coach mode](coach.md) | Understanding, identification, pseudocode, implementation, and reflection |
+| Follow a whole puzzle session | [Daily checklist](daily-checklist.md) | Environment, checks, and recordkeeping |
 | Break down an unfamiliar problem | [Problem-solving guide](problem-solving.md) | Goal, constraints, state, algorithm, invariant |
 | Get hints or explain my thinking | [Puzzle teacher](puzzle-teacher.md) | Five coaching modes and a gradual hint ladder |
 | Copy a useful request | [Prompt templates](prompts.md) | Discovery, review, debugging, performance, reflection |

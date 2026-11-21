@@ -14,7 +14,7 @@ For first use, start with [quick start](../QUICKSTART.md). The [documentation ma
 ## Before implementing a part
 
 - [ ] Choose day and part; say whether you want hints or direct implementation.
-- [ ] Use the [eight questions](problem-solving.md) to establish the goal, representation, constraints, and example trace.
+- [ ] Follow [Coach mode](coach.md) and use the [eight questions](problem-solving.md) to establish the goal, representation, constraints, and example trace.
 - [ ] Populate the relevant example in `Tests/DayNNTests.swift` and replace that example test's `nil` with the published expected result. Do not change assertions merely to match buggy output.
 - [ ] List a few small boundary/adversarial cases and a correctness invariant.
 

@@ -52,6 +52,7 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 
 Start with the [quick start](QUICKSTART.md) for commands or the [learning and coaching guide](docs/README.md) to choose a reference. Bring lessons from earlier years into each new puzzle:
 
+- [Coach mode](docs/coach.md): the default understand, identify, pseudocode, code, and reflect loop.
 - [Problem-solving guide](docs/problem-solving.md): eight questions, algorithm choices, and Swift pitfalls.
 - [Puzzle teacher](docs/puzzle-teacher.md): hints and guided discovery, with direct help when requested.
 - [Reusable prompts](docs/prompts.md): understanding, debugging, implementation, and reflection.

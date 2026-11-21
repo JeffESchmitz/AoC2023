@@ -82,9 +82,9 @@ Pass a day explicitly: outside December the runner defaults to all days, which i
 
 ## Start a coaching session
 
-> I'm working on AoC 2023 Day [N], Part [P]. Use docs/puzzle-teacher.md. Here is my interpretation and what I've tried: [details]. Start with one question or a small hint. Don't reveal later parts or implement the solution yet.
+> I'm working on AoC 2023 Day [N], Part [P]. Use docs/coach.md and docs/puzzle-teacher.md. This is a [learning/direct/mixed] session. Here is my interpretation and what I've tried: [details]. Start with one question or a small hint. Don't reveal later parts unless I ask.
 
-Use [prompts](docs/prompts.md) for a different kind of help, [practice](docs/practice.md) for a short exercise, and the [documentation map](docs/README.md) to find the right reference. Record a useful discovery in the [learning log](docs/learnings/README.md).
+Use [Coach mode](docs/coach.md) for the working loop, [prompts](docs/prompts.md) for a reusable request, [practice](docs/practice.md) for a short exercise, and the [documentation map](docs/README.md) to find the right reference. Record a useful discovery in the [learning log](docs/learnings/README.md).
 
 ## Sources
 
