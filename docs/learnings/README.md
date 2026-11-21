@@ -7,5 +7,6 @@ Use the [note template](TEMPLATE.md) when useful; existing notes do not need ref
 | Day | Pattern to recognize next time |
 | --- | --- |
 | [4 · Scratchcards](day04.md) | Propagate copy counts, give item-specific rules a home, and check when IDs can serve as indices. |
+| [5 · If You Give A Seed A Fertilizer](day05.md) | Match the source interval, preserve its offset, and pass the transformed value through ordered category steps. |
 
 For recall, choose one completed lesson and try a small variation from [practice sessions](../practice.md). The [documentation map](../README.md) points to coaching, debugging, prompts, and historical sources.
