@@ -33,9 +33,27 @@ private struct SeedPipeline {
             .min() ?? 0
     }
 
+    func lowestLocationForRanges() -> Int {
+        let seedRanges = Self.seedRanges(from: seeds)
+        return categorySteps
+            .reduce(seedRanges) { currentRanges, categoryStep in
+                categoryStep.transformRanges(currentRanges)
+            }
+            .map(\.lowerBound)
+            .min() ?? 0
+    }
+
     private func location(for seed: Int) -> Int {
         categorySteps.reduce(seed) { currentValue, categoryStep in
             categoryStep.transform(currentValue)
+        }
+    }
+
+    private static func seedRanges(from seeds: [Int]) -> [Range<Int>] {
+        precondition(seeds.count.isMultiple(of: 2), "Expected seed starts and lengths in pairs.")
+        return stride(from: 0, to: seeds.count, by: 2).map { index in
+            let start = seeds[index]
+            return start..<(start + seeds[index + 1])
         }
     }
 }
@@ -47,6 +65,7 @@ private struct CategoryStep {
         instructions = lines
             .dropFirst()
             .map(IntervalInstruction.init)
+            .sorted { $0.sourceRange.lowerBound < $1.sourceRange.lowerBound }
     }
 
     func transform(_ value: Int) -> Int {
@@ -55,11 +74,44 @@ private struct CategoryStep {
         }
         return matchingInstruction.destinationValue(for: value)
     }
+
+    func transformRanges(_ inputRanges: [Range<Int>]) -> [Range<Int>] {
+        inputRanges.flatMap(transformRange)
+    }
+
+    private func transformRange(_ inputRange: Range<Int>) -> [Range<Int>] {
+        var transformedRanges: [Range<Int>] = []
+        var cursor = inputRange.lowerBound
+
+        for instruction in instructions {
+            guard instruction.sourceRange.upperBound > cursor else { continue }
+            guard instruction.sourceRange.lowerBound < inputRange.upperBound else { break }
+
+            if cursor < instruction.sourceRange.lowerBound {
+                transformedRanges.append(cursor..<instruction.sourceRange.lowerBound)
+                cursor = instruction.sourceRange.lowerBound
+            }
+
+            let mappedUpperBound = min(inputRange.upperBound, instruction.sourceRange.upperBound)
+            if cursor < mappedUpperBound {
+                transformedRanges.append(
+                    instruction.destinationRange(for: cursor..<mappedUpperBound)
+                )
+                cursor = mappedUpperBound
+            }
+        }
+
+        if cursor < inputRange.upperBound {
+            transformedRanges.append(cursor..<inputRange.upperBound)
+        }
+
+        return transformedRanges
+    }
 }
 
 private struct IntervalInstruction {
     private let destinationStart: Int
-    private let sourceRange: Range<Int>
+    let sourceRange: Range<Int>
 
     init(_ line: String) {
         let values = line.integers()
@@ -80,6 +132,14 @@ private struct IntervalInstruction {
     func destinationValue(for value: Int) -> Int {
         destinationStart + offsetFromSourceStart(for: value)
     }
+
+    func destinationRange(for values: Range<Int>) -> Range<Int> {
+        let destinationLowerBound = destinationValue(for: values.lowerBound)
+        let destinationUpperBound = destinationStart
+            + values.upperBound
+            - sourceRange.lowerBound
+        return destinationLowerBound..<destinationUpperBound
+    }
 }
 
 final class Day05: AdventOfCodeDay {
@@ -95,6 +155,6 @@ final class Day05: AdventOfCodeDay {
     }
 
     func part2() async -> Int {
-        0
+        seedPipeline.lowestLocationForRanges()
     }
 }

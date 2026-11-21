@@ -15,7 +15,7 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 ## ⭐ 2023 Progress
 
 ```
-████░░░░░░░░░░░░░░░░░░░░░  Stars (8/50)
+█████░░░░░░░░░░░░░░░░░░░░  Stars (10/50)
 ```
 
 | Day | Title | Stars | Key Technique |
@@ -24,7 +24,7 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 | [2](Sources/Day02.swift) | [Cube Conundrum](https://adventofcode.com/2023/day/2) | ⭐⭐ | Parse draws and track per-color maxima |
 | [3](Sources/Day03.swift) | [Gear Ratios](https://adventofcode.com/2023/day/3) | ⭐⭐ | Grid adjacency and gear-to-number mapping |
 | [4](Sources/Day04.swift) | [Scratchcards](https://adventofcode.com/2023/day/4) | ⭐⭐ | [Set intersections and forward copy counts](docs/learnings/day04.md) |
-| [5](Sources/Day05.swift) | [If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5) | | [Half-open interval translation through ordered maps](docs/learnings/day05.md) |
+| [5](Sources/Day05.swift) | [If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5) | ⭐⭐ | [Half-open interval translation through ordered maps](docs/learnings/day05.md) |
 | [6](Sources/Day06.swift) | [Wait For It](https://adventofcode.com/2023/day/6) | | |
 | [7](Sources/Day07.swift) | [Camel Cards](https://adventofcode.com/2023/day/7) | | |
 | [8](Sources/Day08.swift) | [Haunted Wasteland](https://adventofcode.com/2023/day/8) | | |
@@ -46,7 +46,7 @@ This repo was generated from gereon's [AoCTemplate](https://codeberg.org/gereon/
 | [24](Sources/Day24.swift) | [Never Tell Me The Odds](https://adventofcode.com/2023/day/24) | | |
 | [25](Sources/Day25.swift) | [Snowverload](https://adventofcode.com/2023/day/25) | | |
 
-**Total: 8/50 stars** ⭐ 🎄
+**Total: 10/50 stars** ⭐ 🎄
 
 ## 📚 Problem-solving toolkit
 

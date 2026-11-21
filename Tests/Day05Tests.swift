@@ -71,23 +71,32 @@ struct Day05Tests {
         81 45 19
         """
         #expect(await Day05(input: identityInput).part1() == 74)
+
+        let splitRangeInput = """
+        seeds: 0 20
+
+        seed-to-location map:
+        100 0 5
+        200 10 5
+        """
+        #expect(await Day05(input: splitRangeInput).part2() == 5)
     }
 
     @Test("Day 5 Part 1 Solution", .enabled(if: !Day05.input.isEmpty, "no puzzle input yet"))
     func testDay05_part1_solution() async {
         let day = Day05(input: Day05.input)
-        await expectAnswer(day.part1(), nil)
+        await expectAnswer(day.part1(), 309_796_150)
     }
 
     @Test("Day 5 Part 2", .tags(.testInput), .enabled(if: !testInput.isEmpty, "no example input yet"))
     func testDay05_part2() async {
         let day = Day05(input: testInput)
-        await expectAnswer(day.part2(), nil)
+        await expectAnswer(day.part2(), 46)
     }
 
     @Test("Day 5 Part 2 Solution", .enabled(if: !Day05.input.isEmpty, "no puzzle input yet"))
     func testDay05_part2_solution() async {
         let day = Day05(input: Day05.input)
-        await expectAnswer(day.part2(), nil)
+        await expectAnswer(day.part2(), 50_716_416)
     }
 }
